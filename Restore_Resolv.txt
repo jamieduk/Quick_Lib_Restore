@@ -1,0 +1,32 @@
+
+Quick Lib Restore By J~Net 2024
+
+https://github.com/jamieduk/Quick_Lib_Restore
+
+
+
+
+
+This will backup & Restore all vital shared libraries your system need to work!
+
+
+this can also restore them so if any are every missing or currupted you can restore them and fix issues!
+
+Any issues try using sudo command!
+
+
+./backup.sh
+
+
+./restore.sh
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Regardless of files in Backup folder (Currently for raspberry pi 5 Arm 64 Bit Raspian OS aka debian arch)
+
+If you system is different to above you will NEED to run a ./backup.sh so files are correct for your system!
+
+
