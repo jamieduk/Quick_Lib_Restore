@@ -29,4 +29,60 @@ Regardless of files in Backup folder (Currently for raspberry pi 5 Arm 64 Bit Ra
 
 If you system is different to above you will NEED to run a ./backup.sh so files are correct for your system!
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+The libraries listed in the enhanced scripts are some of the most critical for the overall functionality of a Linux system, but ensuring your system is always "repairable" involves more than just backing up shared object files. Here's a breakdown:
+
+Key Points of System Repairability:
+Critical Libraries:
+
+The .so files in your backup list (like libc.so.6, libpthread.so.0, etc.) are essential for running virtually every application on the system, including system utilities and services like brave-browser.
+If these libraries are intact and available, most programs will have the core dependencies needed to run properly.
+Application-Specific Dependencies:
+
+Brave Browser and other programs rely on additional libraries beyond the core system libraries. These may include graphics libraries, web libraries (e.g., SSL libraries), or more.
+You may also want to back up certain application-specific .so files located in /usr/lib/ or other directories, depending on the applications installed on your system.
+Package Managers:
+
+If critical system files are corrupted, it's often easier and safer to use your package manager (e.g., apt, dnf, yum) to reinstall or repair damaged packages.
+Keeping the system package manager operational is crucial for system recovery. Tools like apt will rely on some of the same core libraries you've already included, so backing those up helps.
+System Configuration Files:
+
+Beyond libraries, configuration files located in /etc/ and other directories are crucial. Damaged or missing configuration files could prevent services like the display server (X11/Wayland) from starting, which would stop your browser from working.
+Consider backing up configuration files (e.g., /etc/hosts, network configs, application configs, etc.).
+Kernel and Bootloader:
+
+The kernel and bootloader (e.g., GRUB) are outside the scope of .so libraries, but they are critical for booting your system. Having a way to recover the kernel or bootloader (like a live USB) ensures that even if the system doesn't boot, you can still restore functionality.
+Drivers and Modules:
+
+If your system uses specific drivers or kernel modules (e.g., graphics drivers), make sure those can be restored. If you're using proprietary drivers (like Nvidia), you may want to keep a copy of the installation package or know how to reinstall them.
+Can You Always Get to Brave-Browser?
+Yes, provided that:
+The core system libraries remain intact (and you've backed them up as in your script).
+Brave Browser's dependencies (like SSL libraries, graphics libraries, etc.) are either backed up or reinstallable using a package manager.
+System configurations (such as network settings, DNS resolution, etc.) are properly configured.
+However, Brave Browser is a complex application with numerous dependencies, so backing up the core libraries might not be enough in all situations. For example, if a specific version of a library required by Brave gets corrupted, you might need to reinstall or repair Brave using a package manager.
+
+Recommendations for a More Comprehensive Backup Strategy:
+Application-Specific Libraries: Identify and back up additional .so files that applications like Brave depend on. This may include:
+
+SSL libraries (libssl.so.*, libcrypto.so.*)
+Graphics libraries (libGL.so.*, libvulkan.so.*, etc.)
+User Data and Configurations:
+
+Backup directories like ~/.config/brave/ to preserve your browser settings, bookmarks, and session data.
+Backup general system configuration files from /etc.
+System Snapshots:
+
+Use tools like Timeshift or rsync to create system snapshots. These snapshots allow you to revert to a previous state if something goes wrong.
+Live USB:
+
+Keep a bootable live USB for your Linux distribution. This allows you to boot into a rescue environment in case your system can't start, giving you a way to restore the backup libraries manually.
+Scripts for Reinstallation:
+
+Consider maintaining scripts to reinstall essential packages (e.g., Brave, drivers, etc.) in case of damage to application-specific libraries or files.
+Summary:
+With the enhanced backup and restore scripts in place, your system is more robust and should be repairable from a variety of issues. You'll likely be able to keep core functionality (like getting Brave Browser and other apps running) by restoring the critical libraries. However, for full system reliability, especially with complex apps, supplement your backups with application-specific libraries, configurations, and tools like system snapshots and a live USB.
+
+This combination ensures you're better prepared for almost any kind of system failure.
